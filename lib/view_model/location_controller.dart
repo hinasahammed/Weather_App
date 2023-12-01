@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/models/weather_model/weather_model.dart';
-import 'package:weather_app/view/location.dart';
+import 'package:weather_app/view/home.dart';
 
 class LocationController extends GetxController {
   RxDouble lat = 0.0.obs;
@@ -48,7 +48,7 @@ class LocationController extends GetxController {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         model.value = WeatherModel.fromJson(data);
-        Get.to(() => const LocationView());
+        Get.offAll(() => const HomeView());
       } else {
         Fluttertoast.showToast(msg: 'Failed to fetch weather data');
       }
